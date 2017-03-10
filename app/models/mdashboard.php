@@ -1,0 +1,55 @@
+<?php
+
+namespace X\App\Models;
+
+use X\Sys\Model;
+
+Class mDashboard extends Model
+{
+
+        public function __construct()
+        {
+                parent::__construct();
+
+        }
+        /**
+        *
+        *   get_all_stories: funcion que devuelve todas las historias.
+        *
+        */
+        function get_all_stories(){
+
+        	$sql='Select * From stories';
+            $this->query($sql);
+            $this->execute();
+            $res=$this->execute();
+            $result="";
+            if($res){
+                $result=$this->resultset();
+            }
+            return $result;
+
+
+        }
+
+        /**
+        *
+        *   get_my_stories: funcion que devuelve las historias del usuario registrado.
+        *
+        */
+
+        function get_my_stories($user){
+
+            $sql='Select * From stories where users ='.$user;
+            $this->query($sql);
+            $this->execute();
+            $res=$this->execute();
+            $result="";
+            if($res){
+                $result=$this->resultset();
+            }
+            return $result;
+
+
+        }
+}

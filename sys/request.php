@@ -1,0 +1,72 @@
+<?php 
+	namespace X\Sys;
+
+	/**
+	*
+	*
+	*@author Aitor 
+	*
+	* Request, Traduce la URL a controlador, accion y parametros
+	*
+	*
+	**/
+
+	class Request{
+
+		static private $query=array();
+		static function exploding(){
+
+			//Separamos la ruta por / y la guardamos como varias cadenas
+			$array_query = explode('/',$_SERVER['REQUEST_URI']);
+
+			//quitamos el primer elemento del array
+			array_shift($array_query);
+			//si la ultima cadena del array esta vacia la quitamos
+			if(end($array_query)==""){
+				array_pop($array_query);
+			}
+			//si es base no fem res, pero si no lo es fem array_shift una altra vegada.
+			$dir=dirname($_SERVER['PHP_SELF']);
+                        
+                        if(!empty($array_query))
+                        {
+                            if($dir=="/".$array_query[0]){
+
+                                    array_shift($array_query);
+                            }
+                        }
+			//guardamos el resultado del array query en el array statico query.
+			self::$query=$array_query;
+
+		}
+		//funcion para sacar el controlador y la accion
+		static function getVariable(){
+
+			return array_shift(self::$query);
+
+		}
+		//funcion para recoger los parametros, combierte los parametros en un array en el cual si estan en parejas se combierte en llaves y valores
+		static function getParams(){
+
+			if(count(self::$query)>0){
+
+				if((count(self::$query)%2)==0){
+
+					for($i=0;$i<count(self::$query);$i++){
+
+						if(($i%2)==0){
+
+							$keys[]=self::$query[$i];
+
+						}else{
+
+							$values[]=self::$query[$i];
+						}
+					}
+
+					$result = array_combine($keys, $values);
+					return $result;
+				}
+			}
+		}
+	}
