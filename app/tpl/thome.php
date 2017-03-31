@@ -13,7 +13,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/storypub">StoryPub</a>
+          <a class="navbar-brand" href="/">StoryPub</a>
         </div>
       </div>
     </nav>
@@ -21,9 +21,9 @@
     <div class="container">
 
       <div class="jumbotron">
-          <a class="center-block" href="/storypub/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
-          <a href="/storypub/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
-          <a href="/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
+          <a href="/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
+          <a href="/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
+          <a href="/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
       </div>
 
     </div>

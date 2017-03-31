@@ -7,6 +7,7 @@ if(!empty($_SESSION['rol']))
 else
 {
     $rol = 0;
+    $id = 0;
 }
 include 'cabecera_comun.php';
 ?>
@@ -31,14 +32,14 @@ include 'cabecera_comun.php';
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/storypub">StoryPub</a>
+          <a class="navbar-brand" href="/">StoryPub</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/storypub/dashboard">Home</a></li>
+          <li class="active"><a href="/dashboard">Home</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/storypub/registry"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="/storypub/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       </div>
     </nav>
@@ -50,15 +51,15 @@ include 'cabecera_comun.php';
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/storypub">StoryPub</a>
+          <a class="navbar-brand" href="/">StoryPub</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/storypub/dashboard">Home</a></li>
+          <li class="active"><a href="/dashboard">Home</a></li>
           <li><a href="#">My Stories</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class=""></span> <?=$_SESSION['user'];?></a></li>
-          <li><a href="/storypub/dashboard/logout"><span class=""></span>Logout</a></li>
+          <li><a href="/dashboard/logout"><span class=""></span>Logout</a></li>
         </ul>
       </div>
     </nav>

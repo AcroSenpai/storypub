@@ -9,10 +9,10 @@
             event.preventDefault();
             var user = $("#user").val()
             var pass = $.md5($("#pass").val());
-            $.post( "/storypub/login/login",{user:user,pass:pass}, function( data ) {
+            $.post( "/login/login",{user:user,pass:pass}, function( data ) {
                     if(data==1)
                     {
-                        window.location.href = "http://localhost/storypub/dashboard";
+                        window.location.href = "http://aperez.cesnuria.com/dashboard";
                     }
                     else
                     {
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/storypub">StoryPub</a>
+          <a class="navbar-brand" href="/">StoryPub</a>
         </div>
       </div>
     </nav>
@@ -51,8 +51,8 @@
         <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-        <a href="/storypub/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
-          <a href="/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
+        <a href="/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
+          <a href="/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
     </div> <!-- /container -->
   </body>
 </html>

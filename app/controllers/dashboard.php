@@ -28,7 +28,10 @@ class Dashboard extends Controller{
     */
     function home(){
         $data['all_stories']=$this->model->get_all_stories();
-        $data['my_stories']= $this->model->get_my_stories($_SESSION["iduser"]); 
+        if(!empty($_SESSION["iduser"]))
+        {
+            $data['my_stories']= $this->model->get_my_stories($_SESSION["iduser"]); 
+        }
         $this->addData($data);
             $this->view->__construct($this->dataView,$this->dataTable);
         $this->view->show();
@@ -42,7 +45,7 @@ class Dashboard extends Controller{
     function logout(){
         
         Session::destroy();
-        header('Location: http://localhost/storypub/');
+        header('Location: http://aperez.cesnuria.com/storypub/');
     } 
 }
 

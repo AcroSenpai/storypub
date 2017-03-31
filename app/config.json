@@ -4,7 +4,7 @@
 		"dbname":"storypub",
 		"dbhost":"localhost",
 		"dbuser":"root",
-		"dbpass":""
+		"dbpass":"linuxlinux"
 	},
 	"app":{
 		"version":"1.0",

@@ -6,14 +6,14 @@
        
         $("#email").focusout(function()
         { email=$("#email").val();
-            $.post( "/storypub/registry/check_email",{ email: email}, function( data ) {
+            $.post( "/registry/check_email",{ email: email}, function( data ) {
                $("#error_email").text(data);
             });
         });
         
         $("#user").focusout(function()
         { user=$("#user").val();
-            $.post( "/storypub/registry/check_user",{ user: user}, function( data ) {
+            $.post( "/registry/check_user",{ user: user}, function( data ) {
                $("#error_user").text(data);
             });
         });
@@ -28,10 +28,10 @@
 
             if($("#error_email").text()=="" && $("#error_user").text()=="")
             {
-                $.post( "/storypub/registry/registry",{email:email,user:user,pass:pass}, function( data ) {
+                $.post( "/registry/registry",{email:email,user:user,pass:pass}, function( data ) {
                     if(data==1)
                     {
-                        window.location.href = "http://localhost/storypub/dashboard";
+                        window.location.href = "http://aperez.cesnuria.com/dashboard";
                     }
                     else
                     {
@@ -56,7 +56,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/storypub">StoryPub</a>
+          <a class="navbar-brand" href="/">StoryPub</a>
         </div>
       </div>
     </nav>
@@ -78,8 +78,8 @@
         
         <button id="enviar" class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
       </form>
-        <a href="/storypub/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
-          <a href="/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
+        <a href="/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
+          <a href="/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
     </div> 
   </body>
 </html>
