@@ -70,30 +70,42 @@ $app->post('/user/add', function(Request $req, Response $res)
 {
     //Recogemos los datos pasados en el cuerpo del documento y se genera un array
     $data=$req->getParsedBody();
-    //guardo el email
-    $email=$data['email'];
-    //guardo el usuario
-    $username=$data['username'];
-    //guardo la contraseña
-    $password=$data['password'];
-    //preparo la consulta para insertar
-    $stmt=$this->db->prepare("INSERT INTO users(rols,email,password,username) VALUES(2,:email,:password,:username)");
-    //enlazo los parametros
-    $stmt->bindParam(':email',$email);
-    $stmt->bindParam(':password',md5($password));
-    $stmt->bindParam(':username',$username);
-    //ejecuto
-    $stmt->execute();
-    //Dependiendo de si se ejecuta correctamente hacemos una accon u otra
-    if($stmt->execute())
-    {   //Funciona, deveolvemos los datos insertados
-        return $this->response->withJson($data);
-    }
-    else
-    {
-        //Falla, devolvemos un mensaje avisando del problema
-        return $this->response->withJson(array('msg' => 'Problema al intentar añadir el usuario.'));
-    }
+    if($data != null)
+    {    
+        //guardo el email
+        $email=$data['email'];
+        //guardo el usuario
+        $username=$data['username'];
+        //guardo la contraseña
+        $password=$data['password'];
+        //preparo la consulta para insertar
+        $stmt=$this->db->prepare("INSERT INTO users(rols,email,password,username) VALUES(2,:email,:password,:username)");
+        //enlazo los parametros
+        $stmt->bindParam(':email',$email);
+        $stmt->bindParam(':password',md5($password));
+        $stmt->bindParam(':username',$username);
+        //ejecuto
+        $stmt->execute();
+        //Recogemos el id del ultimo 
+        $id = $this->db->lastInsertId();
+            //Hacemos un consulta para comprobar que existe
+            $stmt=$this->db->prepare("SELECT * FROM users WHERE iduser=:id");
+            $stmt->bindParam(':id',$id);
+            $stmt->execute();
+            $result=$stmt->fetchAll();
+            
+            //Preguntamos si el email del ultimo añadido es igual al insertado, si coincide devolvemos los datos si no un mensaje
+            if($result[0][email]== $email)
+            {
+                //Funciona, deveolvemos los datos insertados
+                return $this->response->withJson($data);
+            }
+            else
+            {
+                //Falla, devolvemos un mensaje avisando del problema
+                return $this->response->withJson(array('msg' => 'Problema al intentar añadir el usuario.'));
+            }
+        }
     
     });
 
@@ -154,8 +166,14 @@ $app->delete('/user/del/{id}', function(Request $req, Response $res, $args)
     $stmt->bindParam(':id',$id);
     //ejecuto
     $stmt->execute();
-    //Dependiendo de si se ejecuta correctamente hacemos una accon u otra
-    if($stmt->execute())
+    
+        //Hacemos una consulta para comprobar que ya no existe
+        $stmt=$this->db->prepare("SELECT * FROM users WHERE iduser=:id");
+        $stmt->bindParam(':id',$id);
+        $stmt->execute();
+        $result=$stmt->fetchAll();
+    //Dependiendo de si el result esta vacio, siginifica que se ha borrado
+    if(empty($result))
     {
         //Funciona, devolvemos un mensaje avisandolo
         return $this->response->withJson(array('msg' => 'Usuario borrado correctamente.'));
