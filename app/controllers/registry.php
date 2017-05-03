@@ -37,8 +37,8 @@ class Registry extends Controller{
         $user=filter_input(INPUT_POST, 'user');
         $pass=filter_input(INPUT_POST, 'pass');
         $email=filter_input(INPUT_POST, 'email');
-        
-        
+        $latitud=filter_input(INPUT_POST, 'latitud');
+        $altitud=filter_input(INPUT_POST, 'altitud');
         
         $data=$this->model->get_user($user,$pass);
         $data+=$this->model->check_email($email);
@@ -46,7 +46,7 @@ class Registry extends Controller{
         
         if(empty($data))
         {
-            $this->model->insert_user($user,$pass,$email);
+            $this->model->insert_user($user,$pass,$email,$altitud,$latitud);
             echo 1;
         }   
         else

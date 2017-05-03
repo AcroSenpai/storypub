@@ -1,5 +1,132 @@
 body{
 
-	background: rgba(0,0,0,0.2);
+	background-image: url("/storypub/pub/images/fondo.jpg");
+	background-position: center;
+	background-size: cover;
+	font-family: 'Roboto Slab', serif;
+
+}
+
+nav{
+	border-radius: 0px !important;
+}
+
+.cont_blanco
+{
+	background-color: white;
+	width: 60%;
+	padding: 30px;
+	border-radius: 5px;
+	margin-left: 20%;
+}
+
+.cont_blanco h2
+{
+	margin-bottom: 50px;
+}
+
+.cont_blanco input
+{
+	margin-bottom: 20px;
+}
+
+.cont_blanco a button
+{
+	width: 49%;
+	margin-top: 20px;
+	margin-left: 2px;
+	background-color: black;
+	color: white;
+}
+
+.cont_blanco2 
+{
+	background-color: white;
+	width: 60%;
+	padding: 30px;
+	border-radius: 5px;
+	margin-top: 50px;
+	margin-left: 20%;
+}
+
+.historia 
+{
+	display: flex;
+	border: 1px solid gray;
+	border-radius: 15px;
+	margin-bottom: 10px;
+}
+
+.historia:hover 
+{
+	background-color: gray;
+}
+
+.media 
+{
+	width: 10%;
+	flex: 1 1 10%;
+	font-size: 30px;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.datos
+{
+	width: 80%;
+	flex: 1 1 80%;
+
+}
+
+.h_cont
+{
+	width: 80%;
+	flex: 1 1 80%;
+	padding: 10px;
+
+}
+
+.acciones
+{
+	display: flex;
+	width: 30%;
+	flex: 1 1 30%;
+	justify-content: flex-end;
+}
+
+.acciones div
+{
+	padding-right: 20px;
+	padding-top: 30%;
+}
+
+
+.historia a
+{
+	text-decoration: none !important;
+	color: black;
+	display: flex;
+}
+
+
+.jumbotron1
+{
+	margin-top: 20%;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.jumbotron1 a
+{
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+.jumbotron1 a button
+{
+	width: 100%;
+	margin-bottom: 50px;
 
 }

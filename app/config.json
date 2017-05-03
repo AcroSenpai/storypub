@@ -1,9 +1,9 @@
 {
 	"dbconf":{
 		"driver":"mysql",
-		"dbname":"storypub",
+		"dbname":"aperez_storypub",
 		"dbhost":"localhost",
-		"dbuser":"root",
+		"dbuser":"aperez_root",
 		"dbpass":"linuxlinux"
 	},
 	"app":{

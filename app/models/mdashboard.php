@@ -21,7 +21,6 @@ Class mDashboard extends Model
 
         	$sql='Select * From stories';
             $this->query($sql);
-            $this->execute();
             $res=$this->execute();
             $result="";
             if($res){
@@ -42,7 +41,6 @@ Class mDashboard extends Model
 
             $sql='Select * From stories where users ='.$user;
             $this->query($sql);
-            $this->execute();
             $res=$this->execute();
             $result="";
             if($res){
@@ -52,4 +50,26 @@ Class mDashboard extends Model
 
 
         }
+
+         /**
+        *
+        *   del_story: funcion que primero borra las valoraciones, tags relacionados a la historia y luego borra la historia. 
+        *
+        */
+
+        function del_story($id)
+        {
+            $sql='DELETE FROM valorations where stories ='.$id;
+            $this->query($sql);
+            $this->execute();
+
+            $sql='DELETE FROM stories_has_tags where stories ='.$id;
+            $this->query($sql);
+            $this->execute();
+
+            $sql='DELETE FROM stories where idstories ='.$id;
+            $this->query($sql);
+            $this->execute();
+        }
+
 }

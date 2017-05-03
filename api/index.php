@@ -1,4 +1,6 @@
 <?php
+
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 //autoload
@@ -17,15 +19,18 @@ $container['db']=function($c)
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
     return $pdo;
+
 };
 
 /**
+ *
  * 
  * Mostrar el listado de usuarios 
  * Ruta: /user
  * 
  */
 
+    
 $app->get('/user', function(Request $req, Response $res){
     //Generamos una consulta simple
     $stmt=$this->db->prepare("SELECT * FROM users");
@@ -43,6 +48,7 @@ $app->get('/user', function(Request $req, Response $res){
  * Ruta: /user/id
  * 
  */
+
 $app->get('/user/{id}',function(Request $req, Response $res, $args)
 {
     //recogemos el argumento id
@@ -113,7 +119,7 @@ $app->post('/user/add', function(Request $req, Response $res)
  * 
  * Actualizar un usuario
  * Ruta: /user/update/id
- * 
+ *
  */
 $app->put('/user/update/{id}',function(Request $req, Response $res, $args)
 {
@@ -156,6 +162,7 @@ $app->put('/user/update/{id}',function(Request $req, Response $res, $args)
  * Ruta: /user/del/id
  * 
  */
+ 
 $app->delete('/user/del/{id}', function(Request $req, Response $res, $args)
 {
     //recogemos el argumento id
@@ -184,4 +191,5 @@ $app->delete('/user/del/{id}', function(Request $req, Response $res, $args)
         return $this->response->withJson(array('msg' => 'Problemas al intentar borrar el usuario.'));
     }
 });
+
 $app->run();    

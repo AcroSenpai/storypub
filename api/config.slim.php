@@ -6,6 +6,6 @@ $config['displayErrorDetails']=true;
 $config['addContenLengthHeader']=false;
 //Config PDO
 $config['db']['host']='localhost';
-$config['db']['user']='root';
+$config['db']['user']='aperez_root';
 $config['db']['pass']='linuxlinux';
-$config['db']['dbname']='storypub';
+$config['db']['dbname']='aperez_storypub';

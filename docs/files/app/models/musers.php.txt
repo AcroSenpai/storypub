@@ -1,0 +1,62 @@
+<?php 
+
+namespace X\App\Models;
+
+use X\Sys\Model;
+
+Class mUsers extends Model
+{
+
+		public function __construct()
+		{
+			parent::__construct();
+			
+		}
+
+		/**
+        *
+        *   get_users: funcion que devuelve los usuarios.
+        *
+        */
+
+		function get_users()
+		{
+			$sql='Select * From users ';
+            $this->query($sql);
+            $this->execute();
+            $res=$this->execute();
+            $result="";
+            if($res){
+                $result=$this->resultset();
+            }
+            return $result;
+		}
+
+		/**
+        *
+        *   set_rol: funcion que establece el rol de un usaurio
+        *
+        */
+
+		function set_rol($id,$rol)
+		{
+			$sql='Update users Set rols ='.$rol.' Where iduser = '.$id;
+			$this->query($sql);
+            $this->execute();
+		}
+
+		/**
+        *
+        *   delete_user: funcion que elimina un usuario.
+        *
+        */
+
+		function delete_user($id)
+		{
+			$sql='Delete from users Where iduser = '.$id;
+			$this->query($sql);
+            $this->execute();
+
+		}
+
+}

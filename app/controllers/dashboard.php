@@ -47,6 +47,18 @@ class Dashboard extends Controller{
         Session::destroy();
         header('Location: http://aperez.cesnuria.com/storypub/');
     } 
+
+    /**
+    *
+    * delete: funcion para eliminar las historias.
+    *
+    */
+
+    function delete(){
+        $id= $this->params['id'];
+        $this->model->del_story($id); 
+        header('Location: http://aperez.cesnuria.com/storypub/dashboard');
+    } 
 }
 
 

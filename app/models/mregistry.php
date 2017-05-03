@@ -76,9 +76,9 @@ Class mRegistry extends Model
         *
         */
         
-        public function insert_user($user,$pass,$email)
+        public function insert_user($user,$pass,$email,$altitud,$latitud)
         {
-            $sql='CALL sp_new_user(2,"'.$email.'","'.$pass.'","'.$user.'")';
+            $sql='CALL sp_new_user(2,"'.$email.'","'.$pass.'","'.$user.'","'.$altitud.'","'.$latitud.'")';
             $this->query($sql);
             $this->execute();
         }

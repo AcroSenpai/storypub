@@ -9,64 +9,61 @@ else
     $rol = 0;
     $id = 0;
 }
+
 include 'cabecera_comun.php';
 ?>
 <script type="text/javascript">
   $(function(){
     $(".propias").css("display","none");
     $("#mis").on("click", function(){
-        $(".propias").css("display","flex");
+        $(".propias").css("display","block");
         $(".todas").css("display","none");
     });
     $("#todas").on("click", function(){
         $(".propias").css("display","none");
-        $(".todas").css("display","flex");
+        $(".todas").css("display","block");
     });
   });
 </script>
 <body>
+
+<nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/storypub/dashboard">StoryPub</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/storypub/dashboard">Home</a></li>
+          <li><a href="/storypub/newstory">New Story</a></li>
+          <?php
+            if($rol==1)
+            {
+          ?>
+            <li><a href="/storypub/users">Users</a></li>
+          <?php
+            }
+          ?>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
   <?php
   if($rol==0)
   {
   ?>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">StoryPub</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/dashboard">Home</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
           <li><a href="/storypub/registry"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-      </div>
-    </nav>
+          <li><a href="/storypub/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
   <?php
   }
   else if($rol!=0)
   {
   ?>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">StoryPub</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/dashboard">Home</a></li>
-          <li><a href="#">My Stories</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class=""></span> <?=$_SESSION['user'];?></a></li>
-          <li><a href="/dashboard/logout"><span class=""></span>Logout</a></li>
-        </ul>
-      </div>
-    </nav>
+          <li><a href="/storypub/profile"><span class=""></span><?=$_SESSION['user'];?></a></li>
+          <li><a href="/storypub/dashboard/logout"><span class=""></span>Logout</a></li>
   <?php
   }
   ?>
-
+        </ul>
+      </div>
+</nav>
   <div id="container-fluid">
     <?php
     if($rol!=0)
@@ -79,59 +76,74 @@ include 'cabecera_comun.php';
     <?php
     }
     ?>
-    <div class="lista_historias">
-      <div class="todas" style="display: flex; justify-content: center;">
-      <table style="margin: 50px;width: 60%" border="1">
-        <?php
-          foreach ($this->dataTable['all_stories'] as $historia) {
+    <div class="cont_blanco2">
+    <h2>Stories</h2>
+      <div class="lista_historias">
+        <div class="todas">
+          <?php
+            foreach ($this->dataTable['all_stories'] as $historia) {
+            ?>
+              <div class="historia">
+                <a class="datos" href="/storypub/storyview/load/id/<?=$historia['idstories']?>">
+                <div class="media"><?=$historia['medium_value']?></div>
+                <div class="h_cont"><p><strong><?=$historia['title']?></strong></p><?=$historia['sinopsis']?></div>
+                </a>
+                <?php
+                if($rol==1 || $id == $historia['users'])
+                {
+                ?>
+                <div class="acciones">
+                  <a href="/storypub/editstory/load/id/<?=$historia['idstories']?>">
+                  <div>Editar</div>
+                  </a>
+                  <a href="/storypub/dashboard/delete/id/<?=$historia['idstories']?>">
+                  <div>Borrar</div>
+                  </a> 
+                </div>
+                <?php
+                }
+                ?>
+              </div>
+          <?php
+            }
           ?>
-            <tr style="width: 100%;">
-              <td style="padding: 10px;"><?=$historia['path']?></td>
-              <td style="padding: 10px;"><p><strong><?=$historia['title']?></strong></p><?=$historia['sinopsis']?></td>
-              <?php
-              if($rol==1 || $id == $historia['users'])
-              {
-              ?>
-                <td style="padding: 10px;">Editar</td>
-                <td style="padding: 10px;">Borrar</td>
-              <?php
-              }
-              ?>
-            </tr>
-        <?php
+          
+        </table></div>
+        <dir class="propias">
+          <?php
+          if(!empty($this->dataTable['my_stories']))
+          {
+            foreach ($this->dataTable['my_stories'] as $historia) {
+            ?>
+              <div class="historia">
+                <a class="datos" href="/storypub/storyview/load/id/<?=$historia['idstories']?>">
+                <div class="media"><?=$historia['medium_value']?></div>
+                <div class="h_cont"><p><strong><?=$historia['title']?></strong></p><?=$historia['sinopsis']?></div>
+                </a>
+                <div class="acciones">
+                  <a href="/storypub/editstory/load/id/<?=$historia['idstories']?>">
+                  <div>Editar</div>
+                  </a>
+                  <a href="/storypub/dashboard/delete/id/<?=$historia['idstories']?>">
+                  <div>Borrar</div>
+                  </a> 
+                </div>
+              </div>
+          <?php
+            }
           }
-        ?>
-        
-      </table></div>
-      <dir class="propias" style="display: flex; justify-content: center;">
-        <table style="margin: 50px;width: 60%" border="1">
-        <?php
-        if(!empty($this->dataTable['my_stories']))
-        {
-          foreach ($this->dataTable['my_stories'] as $historia) {
+          else
+          {
           ?>
-            <tr style="width: 100%;">
-              <td style="padding: 10px;"><?=$historia['path']?></td>
-              <td style="padding: 10px;"><p><strong><?=$historia['title']?></strong></p><?=$historia['sinopsis']?></td>
-              <td style="padding: 10px;">Editar</td>
-              <td style="padding: 10px;">Borrar</td>
-            </tr>
-        <?php
+          <div style="width: 100%;">
+            <div style="padding: 10px;">No tienes ninguna historia. Crea una en este momento!</div>
+            <div style="padding: 10px;">Crear historia.</div>
+           </div>
+          <?php
           }
-        }
-        else
-        {
-        ?>
-        <tr style="width: 100%;">
-          <td style="padding: 10px;">No tienes ninguna historia. Crea una en este momento!</td>
-          <td style="padding: 10px;">Crear historia.</td>
-         </tr>
-        <?php
-        }
-        ?> 
-      </table>
-      </dir>
+          ?> 
+        </dir>
+      </div>
     </div>
   </div>
-  
 </body>

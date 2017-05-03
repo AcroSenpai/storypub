@@ -19,6 +19,7 @@
 	define('APP', ROOT.'app'.DS);
 	define('APP_W', dirname($_SERVER['PHP_SELF']).DS);
 	//CSS, nos crea la ruta automaticamente hacia la carpeta css
-	define('CSS','pub'.DS.'css'.DS);
-	define('JS','pub'.DS.'js'.DS);
-
+	define('CSS',APP_W.'pub'.DS.'css'.DS);
+	define('JS',APP_W.'pub'.DS.'js'.DS);
+	define('IMAGE',APP_W.'pub'.DS.'images'.DS);
+	define('DATA',ROOT.'fs'.DS);

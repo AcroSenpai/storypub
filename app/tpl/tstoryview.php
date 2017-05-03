@@ -1,0 +1,119 @@
+<?php 
+
+if(!empty($_SESSION['rol']))
+{
+    $rol = $_SESSION['rol'];
+    $id = $_SESSION['iduser'];
+}
+else
+{
+    header('Location: /sotrypub/dashboard');
+}
+include 'cabecera_comun.php';
+?>
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $(".deltag").on("click", function(){
+
+      tag = $(this).find('span').text();
+      $.post("/storypub/storyview/deletetag/tag/"+tag);
+      location.reload(true);
+    });
+
+  });
+
+</script>
+<nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/storypub/dashboard">StoryPub</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/storypub/dashboard">Home</a></li>
+          <li><a href="/storypub/newstory">New Story</a></li>
+          <?php
+            if($rol==1)
+            {
+          ?>
+            <li><a href="/storypub/users">Users</a></li>
+          <?php
+            }
+          ?>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+  <?php
+  if($rol==0)
+  {
+  ?>
+          <li><a href="/storypub/registry"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/storypub/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  <?php
+  }
+  else if($rol!=0)
+  {
+  ?>
+          <li><a href="/storypub/profile"><span class=""></span><?=$_SESSION['user'];?></a></li>
+          <li><a href="/storypub/dashboard/logout"><span class=""></span>Logout</a></li>
+  <?php
+  }
+  ?>
+        </ul>
+      </div>
+</nav>
+
+<div id="container-fluid" style="width: 60%;justify-content: center; margin-left: 20%; margin-top: 3%; background-color: white; padding: 20px; border-radius: 10px; ">
+    <div style="flex:1 1 100%;">
+    <h3>
+     <?php
+     echo $this->dataTable['story'][0]['title'];
+     ?> 
+     </h3>
+    </div>
+    <div style="flex:1 1 100%;">
+     <?php
+     echo $this->dataTable['story'][0]['sinopsis'];
+     ?> 
+    </div>
+    <div style="flex:1 1 100%;justify-content: center; padding-top: 30px;">
+    <?php
+       include (DATA.$this->dataTable['user'][0]['username'].DS.$this->dataTable['story'][0]['path'].'.txt');
+    ?>
+    </div>
+    <?php
+       if(empty($this->dataTable['assess']))
+        {
+    ?>
+    <div id="vloraciones">
+      <div id="numeros">
+        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/1">1</a></div>
+        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/2">2</div>
+        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/3">3</div>
+        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/4">4</div>
+        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/5">5</div>
+      </div>
+    </div>
+  <?php
+       }
+       else
+      {
+    ?>
+    <div id="vloraciones">
+        <div>Tu valoracion fue de: <?=$this->dataTable['assess'][0]['value'];?></div>
+    </div>
+    <?php
+       }
+    ?>
+    <div id="tags">
+        <?php
+          foreach ($this->dataTable['tags'] as $tag) 
+          {
+        ?>
+            <div><?=$tag['nom']?>    <?php if($rol==1) echo "<span class='deltag' style='cursor: pointer;'>eliminar<span style='display:none;'>".$tag['idtags']."</span></span>"; ?></div>
+        <?php
+          }
+        ?>
+    </div>
+</div>

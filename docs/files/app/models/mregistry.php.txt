@@ -1,0 +1,86 @@
+<?php
+
+namespace X\App\Models;
+
+use X\Sys\Model;
+
+Class mRegistry extends Model
+{
+
+        public function __construct()
+        {
+                parent::__construct();
+
+        }
+
+        /**
+        *
+        *   get_user: funcion que comprueba si un usuario existe.
+        *
+        */
+        
+        public function get_user($user,$pass)
+        {
+            $sql='Select * From users Where username="'.$user.'" AND password="'.$pass.'"';
+            $this->query($sql);
+            $this->execute();
+            $res=$this->execute();
+            $result="";
+            if($res){
+                $result=$this->resultset();
+            }
+            return $result;
+        }
+
+        /**
+        *
+        *   check_email: funcion que comprueba si unn mail esta en uso.
+        *
+        */
+        
+        public function check_email($email)
+        {
+            $sql='Select * From users Where email="'.$email.'"';
+            $this->query($sql);
+            $this->execute();
+            $res=$this->execute();
+            $result="";
+            if($res){
+                $result=$this->resultset();
+            }
+            return $result;
+        }
+
+        /**
+        *
+        *   check_user: funcion que comprueba si un usename esta en uso.
+        *
+        */
+        
+        public function check_user($user)
+        {
+            $sql='Select * From users Where username="'.$user.'"';
+            $this->query($sql);
+            $this->execute();
+            $res=$this->execute();
+            $result="";
+            if($res){
+                $result=$this->resultset();
+            }
+            return $result;
+        }
+
+        /**
+        *
+        *   insert_user: funcion que inserta el nuevo usuario, utilizando el procedimiento almacenado.
+        *
+        */
+        
+        public function insert_user($user,$pass,$email,$altitud,$latitud)
+        {
+            $sql='CALL sp_new_user(2,"'.$email.'","'.$pass.'","'.$user.'","'.$altitud.'","'.$latitud.'")';
+            $this->query($sql);
+            $this->execute();
+        }
+}
+
