@@ -66,13 +66,13 @@ include 'cabecera_comun.php';
 
 <div id="container-fluid" style="width: 60%;justify-content: center; margin-left: 20%; margin-top: 3%; background-color: white; padding: 20px; border-radius: 10px; ">
     <div style="flex:1 1 100%;">
-    <h3>
+    <div style="font-size: 50px";>
      <?php
      echo $this->dataTable['story'][0]['title'];
      ?> 
-     </h3>
+     </div>
     </div>
-    <div style="flex:1 1 100%;">
+    <div style="flex:1 1 100%;font-size: 30px">
      <?php
      echo $this->dataTable['story'][0]['sinopsis'];
      ?> 
@@ -87,12 +87,13 @@ include 'cabecera_comun.php';
         {
     ?>
     <div id="vloraciones">
-      <div id="numeros">
-        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/1">1</a></div>
-        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/2">2</div>
-        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/3">3</div>
-        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/4">4</div>
-        <div class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/5">5</div>
+      <div id="numeros" style="font-size: 50px; display: flex;">
+      <div>Valoracion:</div>
+        <div style="padding-left: 15px;" class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/1">1</a></div>
+        <div style="padding-left: 15px;" class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/2">2</a></div>
+        <div style="padding-left: 15px;" class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/3">3</a></div>
+        <div style="padding-left: 15px;" class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/4">4</a></div>
+        <div style="padding-left: 15px;" class="numero"><a href="/storypub/storyview/assess/story/<?=$this->dataTable['story'][0]['idstories']?>/user/<?=$id?>/val/5">5</a></div>
       </div>
     </div>
   <?php
@@ -100,18 +101,19 @@ include 'cabecera_comun.php';
        else
       {
     ?>
-    <div id="vloraciones">
+    <div id="vloraciones" style="font-size: 40px;">
         <div>Tu valoracion fue de: <?=$this->dataTable['assess'][0]['value'];?></div>
     </div>
     <?php
        }
     ?>
-    <div id="tags">
+    <div id="tags" style="font-size: 30px;">
+    <h3>Tags:</h3>
         <?php
           foreach ($this->dataTable['tags'] as $tag) 
           {
         ?>
-            <div><?=$tag['nom']?>    <?php if($rol==1) echo "<span class='deltag' style='cursor: pointer;'>eliminar<span style='display:none;'>".$tag['idtags']."</span></span>"; ?></div>
+            <div><?=$tag['nom']?>    <?php if($rol==1) echo "<span class='deltag' style='cursor: pointer;color: blue;'>eliminar<span style='display:none;'>".$tag['idtags']."</span></span>"; ?></div>
         <?php
           }
         ?>

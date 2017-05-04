@@ -40,8 +40,10 @@ Class mUsers extends Model
 
 		function set_rol($id,$rol)
 		{
-			$sql='Update users Set rols ='.$rol.' Where iduser = '.$id;
+			$sql='Update users Set rols =:rol Where iduser = :id';
 			$this->query($sql);
+			$this->bind(":rol", $rol);
+			$this->bind(":id", $id);
             $this->execute();
 		}
 
@@ -53,8 +55,9 @@ Class mUsers extends Model
 
 		function delete_user($id)
 		{
-			$sql='Delete from users Where iduser = '.$id;
+			$sql='Delete from users Where iduser = :id';
 			$this->query($sql);
+			$this->bind(":id", $id);
             $this->execute();
 
 		}

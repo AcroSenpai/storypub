@@ -50,8 +50,8 @@
         <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
       </form>
-        <a href="/storypub/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
-          <a href="/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
+        <a href="https://aperez.cesnuria.com/storypub/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
+          <a href="https://aperez.cesnuria.com/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
         </div>
     </div> 
   </body>

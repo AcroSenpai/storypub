@@ -35,7 +35,7 @@ getLocation();
                 $.post( "/storypub/registry/registry",{email:email,user:user,pass:pass,latitud:latitud,altitud:altitud}, function( data ) {
                     if(data==1)
                     {
-                        window.location.href = "http://aperez.cesnuria.com/storypub/login";
+                        window.location.href = "https://aperez.cesnuria.com/storypub/login";
                     }
                     else
                     {
@@ -98,8 +98,8 @@ function showPosition(position) {
         
         <button id="enviar" class="btn btn-lg btn-success btn-block" type="submit">Enviar</button>
       </form>
-        <a href="/storypub/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
-          <a href="/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
+        <a href="https://aperez.cesnuria.com/storypub/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
+          <a href="https://aperez.cesnuria.com/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
         </div>
     </div> 
   </body>

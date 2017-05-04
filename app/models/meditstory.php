@@ -20,8 +20,11 @@ Class mEditstory extends Model
 		function update_story($usuario, $titulo, $sinopsis)
 		{
 			 
-			 $sql='UPDATE stories SET title = "'.$titulo.'", sinopsis = "'.$sinopsis.'" WHERE users ="'.$usuario.'"';
+			 $sql='UPDATE stories SET title = ":titulo", sinopsis = ":sinopsis" WHERE users =":users"';
            	 $this->query($sql);
+             $this->bind(":titulo", $id);
+             $this->bind(":sinopsis", $id);
+             $this->bind(":users", $id);
              $this->execute();
 		}
 
@@ -34,8 +37,9 @@ Class mEditstory extends Model
 
 		function get_path_story($story)
 		{
-			 $sql='Select path FROM stories where idstories = '.$story;
+			 $sql='Select path FROM stories where idstories = :story';
            	 $this->query($sql);
+             $this->bind(":story", $story);
              $this->execute();
              $res=$this->execute();
              $result="";
@@ -53,8 +57,9 @@ Class mEditstory extends Model
 
 		function get_story($id)
 		{
-			$sql='Select * From stories Where idstories='.$id;
+			$sql='Select * From stories Where idstories=:id';
             $this->query($sql);
+            $this->bind(":id", $id);
             $this->execute();
             $res=$this->execute();
             $result="";
@@ -74,8 +79,9 @@ Class mEditstory extends Model
 		{
 			$sql='SELECT username, iduser
 					FROM users inner join stories on users.iduser = stories.users
-					WHERE idstories ='.$story;
+					WHERE idstories =:story';
 			$this->query($sql);
+            $this->bind(":story", $story);
             $this->execute();
             $res=$this->execute();
             $result="";

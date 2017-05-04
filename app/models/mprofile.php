@@ -21,8 +21,9 @@ Class mProfile extends Model
 
         function get_user($user)
         {
-        	$sql="SELECT * FROM users WHERE iduser=".$user;
+        	$sql="SELECT * FROM users WHERE iduser=:user";
         	$this->query($sql);
+            $this->bind(":user", $user);
             $res=$this->execute();
             $result="";
             if($res){
@@ -39,8 +40,9 @@ Class mProfile extends Model
 
         function get_user_stories($user)
         {
-            $sql="SELECT * FROM stories WHERE users =".$user;
+            $sql="SELECT * FROM stories WHERE users =:user";
             $this->query($sql);
+            $this->bind(":user", $user);
             $res=$this->execute();
             $result="";
             if($res){

@@ -19,9 +19,9 @@
     <div class="container">
 
       <div class="jumbotron1">
-          <a href="/storypub/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
-          <a href="/storypub/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
-          <a href="/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
+          <a href="https://aperez.cesnuria.com/storypub/login"><button type="button" class="btn btn-lg btn-default">Login</button></a>
+          <a href="https://aperez.cesnuria.com/storypub/registry"><button type="button" class="btn btn-lg btn-default">Registry</button></a>
+          <a href="https://aperez.cesnuria.com/storypub/dashboard"><button type="button" class="btn btn-lg btn-default">Guest</button></a>
       </div>
 
     </div>
